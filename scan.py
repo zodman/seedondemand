@@ -36,8 +36,12 @@ def scan():
         tor = get_torrent_from_hash(hash)
         if tor:
             seed, leech = info.get("seeds"), info.get("peers")
-            msg = u"{} {} \U0001F51D / {} \U00002B07".format(tor["name"], leech, seed)
-            click.echo(msg)
+            args = tor["name"], seed, leech
+            msg = u"{} {} \U0001F51D / {} \U00002B07".format(*args)
+            if int(seed) == 0 and int(leech) > 0:
+                click.echo(msg, fg="white", bg="red")
+            else:
+                click.echo(msg)
 
 
 if __name__=="__main__":
