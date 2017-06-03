@@ -6,7 +6,7 @@ from scraper import scrape
 import yaml
 import click
 
-TRACKER="http://open.nyaatorrents.info:6544/announce"
+TRACKER="http://nyaa.tracker.wf:7777/announce"
 
 _torrent = []
 
@@ -39,7 +39,7 @@ def scan():
             args = tor["name"], seed, leech
             msg = u"{} {} \U0001F51D / {} \U00002B07".format(*args)
             if int(seed) == 0 and int(leech) > 0:
-                click.echo(msg, fg="white", bg="red")
+                click.secho(msg, fg="white", bg="red")
             else:
                 click.echo(msg)
 
